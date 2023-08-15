@@ -57,4 +57,6 @@ public class PlayerControl : MonoBehaviour
 
         //characterController.Move(velocity * Time.deltaTime);
     }
+
+
 }
