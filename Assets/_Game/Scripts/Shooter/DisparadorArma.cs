@@ -8,6 +8,7 @@ public class DisparadorArma : MonoBehaviour
     public float alcance;
     public LayerMask layerMask;
     public GameObject efectoImpacto;
+    public Transform arma;
 
 
     void Update()
@@ -20,7 +21,7 @@ public class DisparadorArma : MonoBehaviour
 
     public void Disparar()
     {
-        Ray rayo = new Ray(canon.position, canon.up);
+        Ray rayo = new Ray(canon.position, (canon.position - arma.position).normalized);
         Debug.DrawRay(rayo.origin, rayo.direction * alcance, Color.yellow, 5f);
         RaycastHit hit;
 
