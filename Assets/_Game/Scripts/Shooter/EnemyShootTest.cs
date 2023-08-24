@@ -7,13 +7,10 @@ public class EnemyShootTest : MonoBehaviour
     public Transform crosshair;
     public Transform target;
     public Transform otherTarget;
+    public Transform raycaster;
 
     public float lerpSpeed = 0.1f;
     public float radious;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,7 +22,13 @@ public class EnemyShootTest : MonoBehaviour
 
         otherTarget.position = shootTarget;
 
+        Vector3 apuntado = Vector3.Lerp(crosshair.position, shootTarget, lerpSpeed * Time.deltaTime);
 
-        crosshair.position = Vector3.Lerp(crosshair.position, shootTarget, lerpSpeed * Time.deltaTime);
+        Ray ray = new Ray(raycaster.position, apuntado - raycaster.position);
+        Debug.DrawRay(ray.origin, ray.direction * 15, Color.yellow);
+        if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit hit, 15))
+        {
+
+        }
     }
 }
